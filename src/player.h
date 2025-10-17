@@ -1,26 +1,16 @@
 #pragma once
-#include "core/scene.h"
+#include "core/actor.h"
 
-class Player;
-
-class SceneMain : public Scene
+class Player : public Actor
 {
-
-private:
-
-    void renderBackground();
-
-    Player* player_ = nullptr; // 玩家
-
 public:
-
-    SceneMain() = default;
-    virtual ~SceneMain() = default;
-
     virtual void init() override;
     virtual void handleEvents(SDL_Event& event) override;
     virtual void update(float dt) override;
     virtual void render() override;
     virtual void clean() override;
 
+    void keyboardControl();
+    void move(float dt);
+    void syncCamera();
 };

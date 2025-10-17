@@ -12,6 +12,11 @@ class Game
 {
     glm::vec2 screen_size_ = glm::vec2(0); // 屏幕大小
     bool is_running_ = true; // 游戏是否运行
+    Scene* current_scene_ = nullptr; // 当前场景
+
+    Uint64 FPS_ = 60; // 游戏帧率
+    Uint64 frame_delay_ = 0; // 帧延迟，单位ns
+    float dt_ = 0.0f; // 帧间隔
 
     SDL_Window* window_ = nullptr; // 窗口
     SDL_Renderer* renderer_ = nullptr; // 渲染器
@@ -22,11 +27,6 @@ class Game
     Game(const Game&) = delete;
     Game& operator=(const Game&) = delete;
 
-    Uint64 FPS_ = 60; // 游戏帧率
-    Uint64 frame_delay_ = 0; // 帧延迟，单位ns
-    float dt_ = 0.0f; // 帧间隔
-
-    Scene* current_scene_ = nullptr; // 当前场景
 public:
     static Game& GetInstance()
     {
@@ -40,4 +40,13 @@ public:
     void update(float dt); // 更新游戏状态
     void render(); // 渲染游戏
     void clean(); // 清理游戏资源
+
+    // getters and setters
+    glm::vec2 getScreenSize() const { return screen_size_; } // 获取屏幕大小
+    Scene* getCurrentScene() const { return current_scene_; } // 获取当前场景
+
+    // 工具函数
+    void drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
+    void drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界
+
 };

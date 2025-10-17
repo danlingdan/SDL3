@@ -2,8 +2,10 @@
 #include "game.h"
 
 class Object {
+
 protected:
     Game& game_ = Game::GetInstance();
+
 public:
     Object() = default;
     virtual ~Object() = default;    // 所有的类，不在构造函数和析构函数里面做任何事。
