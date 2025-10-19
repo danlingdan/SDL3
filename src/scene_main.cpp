@@ -6,34 +6,36 @@ void SceneMain::init()
 
 	world_size_ = game_.getScreenSize() * 3.0f; // 世界大小为屏幕的3倍
     camera_position_ = world_size_ / 2.0f - game_.getScreenSize() / 2.0f;
+
     player_ = new Player();
     player_->init();
     player_->setPosition(world_size_ / 2.0f);
+    addChild(player_);
 
 }
 
 void SceneMain::handleEvents(SDL_Event& event)
 {
+    Scene::handleEvents(event);
 }
 
 void SceneMain::update(float dt)
 {
 
-    player_->update(dt);
+    Scene::update(dt);
 
 }
 
 void SceneMain::render()
 {
+    Scene::render();
     renderBackground();
-    player_->render();
 
 }
 
 void SceneMain::clean()
 {
-    player_->clean();
-    delete player_;
+    Scene::clean();
 }
 
 void SceneMain::renderBackground()

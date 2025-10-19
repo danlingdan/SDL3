@@ -5,6 +5,7 @@ class ObjectWorld : public ObjectScreen
 {
 protected:
     glm::vec2 position_ = glm::vec2(0, 0); // 世界位置
+    virtual void init() override { type_ = ObjectType::OBJECT_WORLD; }
 
 public:
 

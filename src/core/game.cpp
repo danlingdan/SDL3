@@ -38,6 +38,9 @@ void Game::init(std::string title, int width, int height)
     // 计算帧延迟（纳秒级）
     frame_delay_ = 1000000000 / FPS_;
 
+    // 创建资源管理器
+    asset_store_ = new AssetStore(renderer_);
+
     // 创建场景
     current_scene_ = new SceneMain();
     current_scene_->init();
@@ -96,6 +99,10 @@ void Game::clean()
         current_scene_->clean();
         delete current_scene_;
     }
+    if (asset_store_) {
+        asset_store_->clean();
+        delete asset_store_;
+    }
 
     // 释放渲染器和窗口
     if (renderer_) {
@@ -104,6 +111,7 @@ void Game::clean()
     if (window_) {
         SDL_DestroyWindow(window_);
     }
+   
     // 退出Mix
     Mix_CloseAudio();
     Mix_Quit();

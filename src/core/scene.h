@@ -1,5 +1,6 @@
 #pragma once
 #include "object.h"
+#include "object_world.h"
 #include <glm/glm.hpp>
 #include <vector>
 
@@ -9,7 +10,8 @@ protected:
 
     glm::vec2 camera_position_ = glm::vec2(0); // 相机位置
     glm::vec2 world_size_ = glm::vec2(0); // 世界大小
-    std::vector<Object*> objects_; // 场景中的物体
+    std::vector<ObjectWorld*> children_world_;
+    std::vector<ObjectScreen*> children_screen_;
 
 public:
 
@@ -17,10 +19,13 @@ public:
     virtual ~Scene() = default;
 
     virtual void init() override {}
-    virtual void handleEvents(SDL_Event& event) override {}
-    virtual void update(float dt) override {}
-    virtual void render() override {}
-    virtual void clean() override {}
+    virtual void handleEvents(SDL_Event& event) override;
+    virtual void update(float dt) override;
+    virtual void render() override;
+    virtual void clean() override;
+
+    virtual void addChild(Object* child) override;
+    virtual void removeChild(Object* child) override;
 
     glm::vec2 worldToScreen(const glm::vec2& world_position) const { return world_position - camera_position_; }
     glm::vec2 screenToWorld(const glm::vec2& screen_position) const { return screen_position + camera_position_; }
