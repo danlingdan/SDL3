@@ -167,9 +167,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\affiliate\sprite.cpp" />
+    <ClCompile Include="src\affiliate\sprite_anim.cpp" />
     <ClCompile Include="src\core\asset_store.cpp" />
     <ClCompile Include="src\core\game.cpp" />
     <ClCompile Include="src\core\object.cpp" />
+    <ClCompile Include="src\core\object_affiliate.cpp" />
     <ClCompile Include="src\core\object_world.cpp" />
     <ClCompile Include="src\core\scene.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -177,11 +180,14 @@
     <ClCompile Include="src\scene_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\affiliate\sprite.h" />
+    <ClInclude Include="src\affiliate\sprite_anim.h" />
     <ClInclude Include="src\core\actor.h" />
     <ClInclude Include="src\core\asset_store.h" />
     <ClInclude Include="src\core\defs.h" />
     <ClInclude Include="src\core\game.h" />
     <ClInclude Include="src\core\object.h" />
+    <ClInclude Include="src\core\object_affiliate.h" />
     <ClInclude Include="src\core\object_screen.h" />
     <ClInclude Include="src\core\object_world.h" />
     <ClInclude Include="src\core\scene.h" />

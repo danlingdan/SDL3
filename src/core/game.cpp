@@ -2,6 +2,7 @@
 #include "../scene_main.h"
 #include "object_screen.h"
 #include "object_world.h"
+#include "../affiliate/sprite.h"
 #include "actor.h"
 
 void Game::init(std::string title, int width, int height)
@@ -56,7 +57,7 @@ void Game::run()
         auto end = SDL_GetTicksNS();
         auto elapsed = end - start;
         if (elapsed < frame_delay_) {
-            SDL_DelayNS((frame_delay_ - elapsed) / 1000000);
+            SDL_DelayNS(frame_delay_ - elapsed);
             dt_ = frame_delay_ / 1.0e9;
         }
         else {
@@ -119,6 +120,17 @@ void Game::clean()
     TTF_Quit();
     // 退出SDL
     SDL_Quit();
+}
+
+void Game::renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size)
+{
+    SDL_FRect dst_rect = {
+        position.x,
+        position.y,
+        size.x,
+        size.y
+    };
+    SDL_RenderTextureRotated(renderer_, texture.texture, &texture.src_rect, &dst_rect, texture.angle, nullptr, texture.is_flip ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }
 
 void Game::drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor)
