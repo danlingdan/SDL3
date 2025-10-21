@@ -28,7 +28,6 @@ void Scene::update(float dt)
             it = children_world_.erase(it);
             child->clean();
             delete child;
-            SDL_Log("Scene: remove world child\n");
         }
         else {
             if (child->getActive()) {

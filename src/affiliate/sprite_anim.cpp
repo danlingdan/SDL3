@@ -6,7 +6,7 @@ SpriteAnim* SpriteAnim::addSpriteAnimChild(ObjectScreen* parrent, const std::str
     sprite_anim->init();
     sprite_anim->setTexture(Texture(file_path));
     sprite_anim->setScale(scale);
-    sprite_anim->setParrent(parrent);
+    sprite_anim->setParent(parrent);
     parrent->addChild(sprite_anim);
     return sprite_anim;
 }

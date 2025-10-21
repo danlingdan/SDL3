@@ -167,6 +167,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\affiliate\collider.cpp" />
     <ClCompile Include="src\affiliate\sprite.cpp" />
     <ClCompile Include="src\affiliate\sprite_anim.cpp" />
     <ClCompile Include="src\core\actor.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="src\scene_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\affiliate\collider.h" />
     <ClInclude Include="src\affiliate\sprite.h" />
     <ClInclude Include="src\affiliate\sprite_anim.h" />
     <ClInclude Include="src\core\actor.h" />

@@ -10,8 +10,8 @@ protected:
 
 public:
     // getters and setters
-    ObjectScreen* getParrent() const { return parrent_; }
-    void setParrent(ObjectScreen* parrent) { parrent_ = parrent; }
+    ObjectScreen* getParent() const { return parrent_; }
+    void setParent(ObjectScreen* parrent) { parrent_ = parrent; }
     glm::vec2 getOffset() const { return offset_; }
     void setOffset(const glm::vec2& offset) { offset_ = offset; }
     glm::vec2 getSize() const { return size_; }

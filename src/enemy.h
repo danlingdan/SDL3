@@ -20,16 +20,16 @@ private:
 
     SpriteAnim* current_anim_ = nullptr;
 
-    float timer_ = 0.0f;
 
 public:
-    virtual void init();
+    virtual void init() override;
     virtual void update(float dt) override;  // override the update function from Actor
 
     void aim_target(Player* target);
 
     void checkState();
     void changeState(State new_state);
+    void attack();
     void remove();
 
     // getters and setters

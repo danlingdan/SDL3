@@ -13,7 +13,7 @@ Sprite* Sprite::addSpriteChild(ObjectScreen* parrent, const std::string& file_pa
     sprite->init();
     sprite->setTexture(Texture(file_path));
     sprite->setScale(scale);
-    sprite->setParrent(parrent);
+    sprite->setParent(parrent);
     parrent->addChild(sprite);
     return sprite;
 }
