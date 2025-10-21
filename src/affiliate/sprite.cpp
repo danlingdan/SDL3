@@ -20,14 +20,7 @@ Sprite* Sprite::addSpriteChild(ObjectScreen* parrent, const std::string& file_pa
 
 void Sprite::render()
 {
-    if (texture_.texture == nullptr)
-    {
-        return;
-    }
-    if (parrent_ == nullptr)
-    {
-        return;
-    }
+    if (!texture_.texture || !parrent_ || is_finish_) return;
     auto pos = parrent_->getRenderPosition() + offset_;
     game_.renderTexture(texture_, pos, size_);   //解耦
 }

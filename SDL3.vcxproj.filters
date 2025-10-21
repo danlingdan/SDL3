@@ -48,6 +48,12 @@
     <ClCompile Include="src\affiliate\sprite_anim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\actor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\game.h">
@@ -87,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\affiliate\sprite_anim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

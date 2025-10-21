@@ -5,11 +5,15 @@ void Scene::handleEvents(SDL_Event& event)
     Object::handleEvents(event);
     for (auto& child : children_screen_)
     {
-        child->handleEvents(event);
+        if (child->getActive()) {
+            child->handleEvents(event);
+        }
     }
     for (auto& child : children_world_)
     {
-        child->handleEvents(event);
+        if (child->getActive()) {
+            child->handleEvents(event);
+        }
     }
 
 }
@@ -17,13 +21,36 @@ void Scene::handleEvents(SDL_Event& event)
 void Scene::update(float dt)
 {
     Object::update(dt);
-    for (auto& child : children_world_)
+    for (auto it = children_world_.begin(); it != children_world_.end(); )
     {
-        child->update(dt);
+        auto child = *it;
+        if (child->getNeedRemove()) {
+            it = children_world_.erase(it);
+            child->clean();
+            delete child;
+            SDL_Log("Scene: remove world child\n");
+        }
+        else {
+            if (child->getActive()) {
+                child->update(dt);
+            }
+            ++it;
+        }
     }
-    for (auto& child : children_screen_)
+    for (auto it = children_screen_.begin(); it != children_screen_.end(); )
     {
-        child->update(dt);
+        auto child = *it;
+        if (child->getNeedRemove()) {
+            it = children_screen_.erase(it);
+            child->clean();
+            delete child;
+        }
+        else {
+            if (child->getActive()) {
+                child->update(dt);
+            }
+            ++it;
+        }
     }
 }
 
@@ -32,11 +59,15 @@ void Scene::render()
     Object::render();
     for (auto& child : children_world_)
     {
-        child->render();
+        if (child->getActive()) {
+            child->render();
+        }
     }
     for (auto& child : children_screen_)
     {
-        child->render();
+        if (child->getActive()) {
+            child->render();
+        }
     }
 }
 
