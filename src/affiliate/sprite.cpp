@@ -7,7 +7,7 @@ Texture::Texture(const std::string& file_path)
 }
 
 
-Sprite* Sprite::addSpriteChild(ObjectScreen* parrent, const std::string& file_path, float scale)
+Sprite* Sprite::addSpriteChild(ObjectScreen* parrent, const std::string& file_path, float scale, Anchor anchor)
 {
     auto sprite = new Sprite();
     sprite->init();

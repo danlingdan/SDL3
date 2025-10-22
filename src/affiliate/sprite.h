@@ -19,14 +19,13 @@ protected:
     bool is_finish_ = false;
 
 public:
-    static Sprite* addSpriteChild(ObjectScreen* parrent, const std::string& file_path, float scale = 1.0f);
+    static Sprite* addSpriteChild(ObjectScreen* parrent, const std::string& file_path, float scale = 1.0f, Anchor anchor = Anchor::CENTER);
 
     virtual void render() override;
 
     // getters and setters
     Texture getTexture() const { return texture_; }
     virtual void setTexture(const Texture& texture);
-    void setScale(float scale) { size_ *= scale; }
     void setFlip(bool is_flip) { texture_.is_flip = is_flip; }
     void setAngle(float angle) { texture_.angle = angle; }
     bool getFlip() const { return texture_.is_flip; }
