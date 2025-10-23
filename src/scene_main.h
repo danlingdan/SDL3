@@ -3,10 +3,12 @@
 
 class Spawner;
 class Player;
+class UIMouse;
 class SceneMain : public Scene
 {
     Player* player_ = nullptr; // 玩家
     Spawner* spawner_ = nullptr;
+    UIMouse* ui_mouse_ = nullptr;
 public:
     SceneMain() = default;
     virtual ~SceneMain() = default;

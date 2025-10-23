@@ -182,6 +182,7 @@
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\raw\stats.cpp" />
     <ClCompile Include="src\scene_main.cpp" />
+    <ClCompile Include="src\screen\ui_mouse.cpp" />
     <ClCompile Include="src\spawner.cpp" />
     <ClCompile Include="src\world\effect.cpp" />
   </ItemGroup>
@@ -198,6 +199,7 @@
     <ClInclude Include="src\core\object_screen.h" />
     <ClInclude Include="src\core\object_world.h" />
     <ClInclude Include="src\core\scene.h" />
+    <ClInclude Include="src\screen\ui_mouse.h" />
     <ClInclude Include="src\spawner.h" />
     <ClInclude Include="src\enemy.h" />
     <ClInclude Include="src\player.h" />

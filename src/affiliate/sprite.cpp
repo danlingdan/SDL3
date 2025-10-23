@@ -10,6 +10,7 @@ Sprite* Sprite::addSpriteChild(ObjectScreen* parrent, const std::string& file_pa
 {
     auto sprite = new Sprite();
     sprite->init();
+    sprite->setAnchor(anchor);
     sprite->setTexture(Texture(file_path));
     sprite->setScale(scale);
     sprite->setParent(parrent);
