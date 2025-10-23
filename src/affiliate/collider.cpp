@@ -15,6 +15,7 @@ Collider* Collider::addColliderChild(ObjectScreen* parent, glm::vec2 size, Type 
     collider->init();
     collider->setParent(parent);
     collider->setSize(size);
+    collider->setType(type);
     parent->addChild(collider);
     return collider;
 }

@@ -2,8 +2,28 @@
 #include "../scene_main.h"
 #include "object_screen.h"
 #include "object_world.h"
-#include "../affiliate/sprite.h"
 #include "actor.h"
+#include "../affiliate/sprite.h"
+
+void Game::run()
+{
+    while (is_running_) {
+        auto start = SDL_GetTicksNS();
+        handleEvents();
+        update(dt_);
+        render();
+        auto end = SDL_GetTicksNS();
+        auto elapsed = end - start;
+        if (elapsed < frame_delay_) {
+            SDL_DelayNS(frame_delay_ - elapsed);
+            dt_ = frame_delay_ / 1.0e9;
+        }
+        else {
+            dt_ = elapsed / 1.0e9;
+        }
+        // SDL_Log("FPS: %f", 1.0 / dt_);
+    }
+}
 
 void Game::init(std::string title, int width, int height)
 {
@@ -36,35 +56,16 @@ void Game::init(std::string title, int width, int height)
     // 设置窗口逻辑分辨率
     SDL_SetRenderLogicalPresentation(renderer_, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
 
-    // 计算帧延迟（纳秒级）
+    // 计算帧延迟
     frame_delay_ = 1000000000 / FPS_;
 
     // 创建资源管理器
     asset_store_ = new AssetStore(renderer_);
 
+
     // 创建场景
     current_scene_ = new SceneMain();
     current_scene_->init();
-}
-
-void Game::run()
-{
-    while (is_running_) {
-        auto start = SDL_GetTicksNS();
-        handleEvents();
-        update(dt_);
-        render();
-        auto end = SDL_GetTicksNS();
-        auto elapsed = end - start;
-        if (elapsed < frame_delay_) {
-            SDL_DelayNS(frame_delay_ - elapsed);
-            dt_ = frame_delay_ / 1.0e9;
-        }
-        else {
-            dt_ = elapsed / 1.0e9;
-        }
-        // SDL_Log("FPS: %f", 1.0 / dt_);
-    }
 }
 
 void Game::handleEvents()
@@ -100,6 +101,7 @@ void Game::clean()
         current_scene_->clean();
         delete current_scene_;
     }
+
     if (asset_store_) {
         asset_store_->clean();
         delete asset_store_;
@@ -112,7 +114,6 @@ void Game::clean()
     if (window_) {
         SDL_DestroyWindow(window_);
     }
-   
     // 退出Mix
     Mix_CloseAudio();
     Mix_Quit();

@@ -1,5 +1,32 @@
 #include "asset_store.h"
 
+void AssetStore::clean()
+{
+    for (auto& texture : textures_)
+    {
+        SDL_DestroyTexture(texture.second);
+    }
+    textures_.clear();
+
+    for (auto& sound : sounds_)
+    {
+        Mix_FreeChunk(sound.second);
+    }
+    sounds_.clear();
+
+    for (auto& music : music_)
+    {
+        Mix_FreeMusic(music.second);
+    }
+    music_.clear();
+
+    for (auto& font : fonts_)
+    {
+        TTF_CloseFont(font.second);
+    }
+    fonts_.clear();
+}
+
 void AssetStore::loadImage(const std::string& file_path)
 {
     SDL_Texture* texture = IMG_LoadTexture(renderer_, file_path.c_str());
@@ -107,31 +134,4 @@ TTF_Font* AssetStore::getFont(const std::string& file_path, int font_size)
         return nullptr;
     }
     return iter->second;
-}
-
-void AssetStore::clean()
-{
-    for (auto& texture : textures_)
-    {
-        SDL_DestroyTexture(texture.second);
-    }
-    textures_.clear();
-
-    for (auto& sound : sounds_)
-    {
-        Mix_FreeChunk(sound.second);
-    }
-    sounds_.clear();
-
-    for (auto& music : music_)
-    {
-        Mix_FreeMusic(music.second);
-    }
-    music_.clear();
-
-    for (auto& font : fonts_)
-    {
-        TTF_CloseFont(font.second);
-    }
-    fonts_.clear();
 }

@@ -15,6 +15,7 @@ void Player::init()
     collider_ = Collider::addColliderChild(this, sprite_idle_->getSize() / 2.0f);
     stats_ = Stats::addStatsChild(this);
     effect_ = Effect::addEffectChild(nullptr, "assets/effect/1764.png", glm::vec2(0), 2.0f);
+
 }
 
 void Player::handleEvents(SDL_Event& event)

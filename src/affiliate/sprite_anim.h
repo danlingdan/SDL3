@@ -7,7 +7,6 @@ class SpriteAnim : public Sprite
     int total_frames_ = 0;
     int fps_ = 10;
     float frame_timer_ = 0.0f;
-
     bool is_loop_ = true;
 
 public:

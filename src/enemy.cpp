@@ -3,6 +3,16 @@
 #include "affiliate/collider.h"
 #include "raw/stats.h"
 
+Enemy* Enemy::addEnemyChild(Object* parent, glm::vec2 pos, Player* target)
+{
+    auto enemy = new Enemy();
+    enemy->init();
+    enemy->setPosition(pos);
+    enemy->setTarget(target);
+    if (parent) parent->addChild(enemy);
+    return enemy;
+}
+
 void Enemy::init()
 {
     Actor::init();
@@ -16,7 +26,6 @@ void Enemy::init()
     current_anim_ = anim_normal_;
     collider_ = Collider::addColliderChild(this, current_anim_->getSize());
     stats_ = Stats::addStatsChild(this);
-
 }
 
 void Enemy::update(float dt) {
@@ -26,7 +35,6 @@ void Enemy::update(float dt) {
         move(dt);
         attack();
     }
-
 }
 
 
@@ -63,21 +71,20 @@ void Enemy::changeState(State new_state)
     current_state_ = new_state;
 }
 
+void Enemy::remove()
+{
+    if (anim_die_->getFinish()) {
+        need_remove_ = true;
+    }
+}
+
 void Enemy::attack()
 {
     if (!collider_ || !target_ || target_->getCollider() == nullptr) return;
     if (collider_->isColliding(target_->getCollider())) {
         // TODO: attack
-
         if (stats_ && target_->getStats()) {
             target_->takeDamage(stats_->getDamage());
         }
-
-    }
-}
-void Enemy::remove()
-{
-    if (anim_die_->getFinish()) {
-        need_remove_ = true;
     }
 }

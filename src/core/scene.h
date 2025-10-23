@@ -7,14 +7,12 @@
 class Scene : public Object
 {
 protected:
-
     glm::vec2 camera_position_ = glm::vec2(0); // 相机位置
     glm::vec2 world_size_ = glm::vec2(0); // 世界大小
     std::vector<ObjectWorld*> children_world_;
     std::vector<ObjectScreen*> children_screen_;
 
 public:
-
     Scene() = default;
     virtual ~Scene() = default;
 
