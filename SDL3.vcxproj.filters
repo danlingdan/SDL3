@@ -72,6 +72,12 @@
     <ClCompile Include="src\world\spell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\raw\weapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\weapon_thunder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\game.h">
@@ -132,6 +138,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\world\spell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\raw\weapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\weapon_thunder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
