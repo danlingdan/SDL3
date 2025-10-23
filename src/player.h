@@ -1,12 +1,14 @@
 #pragma once
 #include "core/actor.h"
 #include "affiliate/sprite_anim.h"
+#include "world/effect.h"
 
 class Player : public Actor
 {
 private:
     SpriteAnim* sprite_idle_ = nullptr;
     SpriteAnim* sprite_move_ = nullptr;
+    Effect* effect_ = nullptr;
     bool is_moving_ = false;
 
 public:
@@ -20,4 +22,5 @@ public:
     void syncCamera();
     void checkState();
     void changeState(bool is_moving);
+    void checkIsDead();
 };

@@ -9,6 +9,7 @@ protected:
 
     ObjectType type_ = ObjectType::NONE;
     Game& game_ = Game::GetInstance();
+    std::vector<Object*> object_to_add_;
     std::vector<Object*> children_;
     bool is_active_ = true;
     bool need_remove_ = false;
@@ -23,6 +24,7 @@ public:
     virtual void render();
     virtual void clean();   // 需要清理的资源，在clean()函数里面做。
 
+    void safeAddChild(Object* child) { object_to_add_.push_back(child); }
     virtual void addChild(Object* child) { children_.push_back(child); }
     virtual void removeChild(Object* child) {
         children_.erase(std::remove(children_.begin(), children_.end(), child), children_.end());

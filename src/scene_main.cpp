@@ -1,6 +1,7 @@
 #include "scene_main.h"
 #include "player.h"
 #include "enemy.h"
+#include "world/effect.h"
 
 void SceneMain::init()
 {
@@ -18,6 +19,8 @@ void SceneMain::init()
     enemy->set_target(player_);
     enemy->setPosition(world_size_ / 2.0f + glm::vec2(200.0f));
     addChild(enemy);
+
+    Effect::addEffectChild(this, "assets/effect/184_3.png", world_size_ / 2.0f + glm::vec2(200.0f), 1.0f, enemy);
 
 }
 

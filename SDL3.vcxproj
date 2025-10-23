@@ -180,7 +180,9 @@
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\raw\stats.cpp" />
     <ClCompile Include="src\scene_main.cpp" />
+    <ClCompile Include="src\world\effect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\affiliate\collider.h" />
@@ -197,7 +199,9 @@
     <ClInclude Include="src\core\scene.h" />
     <ClInclude Include="src\enemy.h" />
     <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\raw\stats.h" />
     <ClInclude Include="src\scene_main.h" />
+    <ClInclude Include="src\world\effect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

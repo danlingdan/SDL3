@@ -2,6 +2,7 @@
 #include "core/scene.h"
 #include "affiliate/sprite_anim.h"
 #include "affiliate/collider.h"
+#include "raw/stats.h"
 
 void Player::init()
 {
@@ -12,6 +13,8 @@ void Player::init()
     sprite_move_->setActive(false);
 
     collider_ = Collider::addColliderChild(this, sprite_idle_->getSize() / 2.0f);
+    stats_ = Stats::addStatsChild(this);
+    effect_ = Effect::addEffectChild(nullptr, "assets/effect/1764.png", glm::vec2(0), 2.0f);
 }
 
 void Player::handleEvents(SDL_Event& event)
@@ -27,6 +30,7 @@ void Player::update(float dt)
     checkState();
     move(dt);
     syncCamera();
+    checkIsDead();
 }
 
 void Player::render()
@@ -94,5 +98,14 @@ void Player::changeState(bool is_moving)
         sprite_move_->setActive(false);
         sprite_idle_->setCurrentFrame(sprite_move_->getCurrentFrame());
         sprite_idle_->setFrameTimer(sprite_move_->getFrameTimer());
+    }
+}
+
+void Player::checkIsDead()
+{
+    if (!stats_->getIsAlive()) {
+        game_.getCurrentScene()->safeAddChild(effect_);
+        effect_->setPosition(getPosition());
+        setActive(false);
     }
 }
