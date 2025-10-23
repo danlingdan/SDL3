@@ -185,6 +185,7 @@
     <ClCompile Include="src\screen\ui_mouse.cpp" />
     <ClCompile Include="src\spawner.cpp" />
     <ClCompile Include="src\world\effect.cpp" />
+    <ClCompile Include="src\world\spell.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\affiliate\collider.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="src\raw\stats.h" />
     <ClInclude Include="src\scene_main.h" />
     <ClInclude Include="src\world\effect.h" />
+    <ClInclude Include="src\world\spell.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
