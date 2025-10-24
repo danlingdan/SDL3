@@ -167,6 +167,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\affiliate\affiliate_bar.cpp" />
     <ClCompile Include="src\affiliate\collider.cpp" />
     <ClCompile Include="src\affiliate\sprite.cpp" />
     <ClCompile Include="src\affiliate\sprite_anim.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="src\world\spell.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\affiliate\affiliate_bar.h" />
     <ClInclude Include="src\affiliate\collider.h" />
     <ClInclude Include="src\affiliate\sprite.h" />
     <ClInclude Include="src\affiliate\sprite_anim.h" />

@@ -78,6 +78,9 @@
     <ClCompile Include="src\weapon_thunder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\affiliate\affiliate_bar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\game.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\weapon_thunder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\affiliate\affiliate_bar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

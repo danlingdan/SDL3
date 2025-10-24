@@ -3,7 +3,7 @@
 class Player;
 class Spawner : public Object {
 protected:
-    int num_ = 20;
+    int num_ = 10;
     float timer_ = 0;
     float interval_ = 3.0f;
     Player* target_ = nullptr;
