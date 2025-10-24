@@ -22,7 +22,7 @@ void Sprite::render()
 {
     if (!texture_.texture || !parrent_ || is_finish_) return;
     auto pos = parrent_->getRenderPosition() + offset_;
-    game_.renderTexture(texture_, pos, size_);   //解耦
+    game_.renderTexture(texture_, pos, size_, percentage_);   //解耦
 }
 
 void Sprite::setTexture(const Texture& texture)

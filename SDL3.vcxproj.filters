@@ -81,6 +81,9 @@
     <ClCompile Include="src\affiliate\affiliate_bar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\screen\hud_stats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\game.h">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\affiliate\affiliate_bar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screen\hud_stats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
