@@ -8,7 +8,7 @@
 void Weapon::update(float dt)
 {
     Object::update(dt);
-    cool_down_timer_ += dt;
+    cool_down_timer_ += dt;  // 很可能大于1
 }
 
 void Weapon::attack(glm::vec2 position, Spell* spell)

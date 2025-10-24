@@ -14,7 +14,7 @@ protected:
 public:
     virtual void update(float dt) override;
 
-    virtual void takeDamage(float damage);
+    virtual void takeDamage(float damage) override;
     void move(float dt);    // 移动
     // getters and setters
     glm::vec2 getVelocity() const { return velocity_; }
