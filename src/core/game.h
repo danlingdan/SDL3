@@ -65,6 +65,7 @@ public:
     void setHighScore(int high_score) { high_score_ = high_score; } // 设置最高分数
     int getHighScore() const { return high_score_; } // 获取最高分数
     void addScore(int score);
+    void quit() { is_running_ = false; }
 
     // 音频函数
     void playMusic(const std::string& music_path, bool loop = true) { Mix_PlayMusic(asset_store_->getMusic(music_path), loop ? -1 : 0); } //-1代表无限循环
@@ -82,6 +83,10 @@ public:
     glm::vec2 randomVec2(const glm::vec2& min, const glm::vec2& max) { return glm::vec2(randomFloat(min.x, max.x), randomFloat(min.y, max.y)); }
     glm::ivec2 randomIVec2(const glm::ivec2& min, const glm::ivec2& max) { return glm::ivec2(randomInt(min.x, max.x), randomInt(min.y, max.y)); }
 
+    // 绘制函数
+    void drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
+    void drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界
+
     // 渲染函数
     void renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size, const glm::vec2& mask = glm::vec2(1.0f)); // 渲染纹理
     void renderFillCircle(const glm::vec2& position, const glm::vec2& size, float alpha);
@@ -91,6 +96,6 @@ public:
     TTF_Text* createTTF_Text(const std::string& text, const std::string& font_path, int font_size = 16);
 
     // 工具函数
-    void drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
-    void drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界
+    bool isMouseInRect(const glm::vec2& top_left, const glm::vec2& botton_right);
+
 };
