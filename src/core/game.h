@@ -66,6 +66,16 @@ public:
     int getHighScore() const { return high_score_; } // 获取最高分数
     void addScore(int score);
 
+    // 音频函数
+    void playMusic(const std::string& music_path, bool loop = true) { Mix_PlayMusic(asset_store_->getMusic(music_path), loop ? -1 : 0); } //-1代表无限循环
+    void playSound(const std::string& sound_path) { Mix_PlayChannel(-1, asset_store_->getSound(sound_path), 0); }
+    void stopMusic() { Mix_HaltMusic(); }
+    void stopSound() { Mix_HaltChannel(-1); }       // 停止所有音效
+    void pauseMusic() { Mix_PauseMusic(); }
+    void pauseSound() { Mix_Pause(-1); }
+    void resumeMusic() { Mix_ResumeMusic(); }
+    void resumeSound() { Mix_Resume(-1); }
+
     // 随机数函数
     float randomFloat(float min, float max) { return std::uniform_real_distribution<float>(min, max)(gen_); }
     int randomInt(int min, int max) { return std::uniform_int_distribution<int>(min, max)(gen_); }
