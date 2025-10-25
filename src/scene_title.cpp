@@ -15,20 +15,34 @@ void SceneTitle::init()
     button_credits_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() / 2.0f + glm::vec2(0, 200), "assets/UI/A_Credits1.png", "assets/UI/A_Credits2.png", "assets/UI/A_Credits3.png", 2.0f);
     button_quit_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() / 2.0f + glm::vec2(200, 200), "assets/UI/A_Quit1.png", "assets/UI/A_Quit2.png", "assets/UI/A_Quit3.png", 2.0f);
 
+    auto text = game_.loadTextFile("assets/credits.txt");
+    credits_text_ = HUDText::addHUDTextChild(this, text, game_.getScreenSize() / 2.0f, glm::vec2(500, 500), "assets/font/VonwaonBitmap-16px.ttf", 16);
+    credits_text_->setBgSizeByText();
+    credits_text_->setActive(false);
 }
 
 void SceneTitle::handleEvents(SDL_Event& event)
 {
+    if (credits_text_->getActive()) {
+        if (event.type == SDL_EVENT_MOUSE_BUTTON_UP) {
+            credits_text_->setActive(false);
+        }
+        return;
+    }
     Scene::handleEvents(event);
 }
 
 void SceneTitle::update(float dt)
 {
-    Scene::update(dt);
     color_timer_ += dt;
     updateColor();
+    if (credits_text_->getActive()) {
+        return;
+    }
+    Scene::update(dt);
     checkButtonQuit();
     checkButtonStart();
+    checkButtonCredits();
 }
 
 void SceneTitle::render()
@@ -66,5 +80,12 @@ void SceneTitle::checkButtonStart()
     if (button_start_->getIsTrigger()) {
         auto scene = new SceneMain();
         game_.safeChangeScene(scene);
+    }
+}
+
+void SceneTitle::checkButtonCredits()
+{
+    if (button_credits_->getIsTrigger()) {
+        credits_text_->setActive(true);
     }
 }

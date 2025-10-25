@@ -17,6 +17,7 @@ public:
     void setSpriteBg(Sprite* sprite) { sprite_bg_ = sprite; }
     TextLabel* getTextLabel() const { return text_label_; }
     Sprite* getSpriteBg() const { return sprite_bg_; }
+    void setBgSizeByText(float margin = 50.0f);
 
     void setText(const std::string& text) { text_label_->setText(text); }
     std::string getText() const { return text_label_->getText(); }
