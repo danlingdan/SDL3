@@ -1,5 +1,6 @@
 #include "game.h"
 #include "../scene_main.h"
+#include "../scene_title.h"
 #include "object_screen.h"
 #include "object_world.h"
 #include "actor.h"
@@ -66,7 +67,7 @@ void Game::init(std::string title, int width, int height)
 
 
     // 创建场景
-    current_scene_ = new SceneMain();
+    current_scene_ = new SceneTitle();
     current_scene_->init();
 }
 
