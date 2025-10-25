@@ -20,6 +20,7 @@ class Game
 
     bool is_running_ = true; // 游戏是否运行
     Scene* current_scene_ = nullptr; // 当前场景
+    Scene* next_scene_ = nullptr;
 
     Uint64 FPS_ = 60; // 游戏帧率
     Uint64 frame_delay_ = 0; // 帧延迟，单位ns
@@ -54,6 +55,9 @@ public:
     void render(); // 渲染游戏
     void clean(); // 清理游戏资源
 
+    void safeChangeScene(Scene* scene) { next_scene_ = scene; }
+    void changeScene(Scene* scene);
+
     // getters and setters
     glm::vec2 getScreenSize() const { return screen_size_; } // 获取屏幕大小
     Scene* getCurrentScene() const { return current_scene_; } // 获取当前场景
@@ -66,6 +70,7 @@ public:
     int getHighScore() const { return high_score_; } // 获取最高分数
     void addScore(int score);
     void quit() { is_running_ = false; }
+    
 
     // 音频函数
     void playMusic(const std::string& music_path, bool loop = true) { Mix_PlayMusic(asset_store_->getMusic(music_path), loop ? -1 : 0); } //-1代表无限循环

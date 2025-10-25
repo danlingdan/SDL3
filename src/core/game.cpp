@@ -10,6 +10,10 @@ void Game::run()
 {
     while (is_running_) {
         auto start = SDL_GetTicksNS();
+        if (next_scene_) {
+            changeScene(next_scene_);
+            next_scene_ = nullptr;
+        }
         handleEvents();
         update(dt_);
         render();
@@ -128,6 +132,16 @@ void Game::clean()
     TTF_Quit();
     // 退出SDL
     SDL_Quit();
+}
+
+void Game::changeScene(Scene* scene)
+{
+    if (current_scene_) {
+        current_scene_->clean();
+        delete current_scene_;
+    }
+    current_scene_ = scene;
+    current_scene_->init();
 }
 
 void Game::setScore(int score)

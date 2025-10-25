@@ -10,7 +10,7 @@
 
 void SceneMain::init()
 {
-    game_.playMusic("assets/bgm/OhMyGhost.ogg");
+    //game_.playMusic("assets/bgm/OhMyGhost.ogg");
 
     SDL_HideCursor();
     world_size_ = game_.getScreenSize() * 3.0f;

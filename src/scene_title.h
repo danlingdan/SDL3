@@ -23,4 +23,5 @@ private:
     void renderBackground();
     void updateColor();
     void checkButtonQuit();
+    void checkButtonStart();
 };
