@@ -3,6 +3,7 @@
 #include "affiliate/sprite_anim.h"
 #include "affiliate/collider.h"
 #include "raw/stats.h"
+#include "affiliate/text_label.h"
 
 void Player::init()
 {

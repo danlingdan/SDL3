@@ -171,6 +171,7 @@
     <ClCompile Include="src\affiliate\collider.cpp" />
     <ClCompile Include="src\affiliate\sprite.cpp" />
     <ClCompile Include="src\affiliate\sprite_anim.cpp" />
+    <ClCompile Include="src\affiliate\text_label.cpp" />
     <ClCompile Include="src\core\actor.cpp" />
     <ClCompile Include="src\core\asset_store.cpp" />
     <ClCompile Include="src\core\game.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="src\scene_main.cpp" />
     <ClCompile Include="src\screen\hud_skill.cpp" />
     <ClCompile Include="src\screen\hud_stats.cpp" />
+    <ClCompile Include="src\screen\hud_text.cpp" />
     <ClCompile Include="src\screen\ui_mouse.cpp" />
     <ClCompile Include="src\spawner.cpp" />
     <ClCompile Include="src\weapon_thunder.cpp" />
@@ -197,6 +199,7 @@
     <ClInclude Include="src\affiliate\collider.h" />
     <ClInclude Include="src\affiliate\sprite.h" />
     <ClInclude Include="src\affiliate\sprite_anim.h" />
+    <ClInclude Include="src\affiliate\text_label.h" />
     <ClInclude Include="src\core\actor.h" />
     <ClInclude Include="src\core\asset_store.h" />
     <ClInclude Include="src\core\defs.h" />
@@ -209,6 +212,7 @@
     <ClInclude Include="src\raw\weapon.h" />
     <ClInclude Include="src\screen\hud_skill.h" />
     <ClInclude Include="src\screen\hud_stats.h" />
+    <ClInclude Include="src\screen\hud_text.h" />
     <ClInclude Include="src\screen\ui_mouse.h" />
     <ClInclude Include="src\spawner.h" />
     <ClInclude Include="src\enemy.h" />

@@ -18,6 +18,8 @@ class Enemy : public Actor
 
     SpriteAnim* current_anim_ = nullptr;
 
+    int score_ = 10;
+
 public:
     static Enemy* addEnemyChild(Object* parent, glm::vec2 pos, Player* target);
     virtual void init() override;

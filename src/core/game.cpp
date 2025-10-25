@@ -56,6 +56,8 @@ void Game::init(std::string title, int width, int height)
     // 设置窗口逻辑分辨率
     SDL_SetRenderLogicalPresentation(renderer_, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
 
+    ttf_engine_ = TTF_CreateRendererTextEngine(renderer_);
+
     // 计算帧延迟
     frame_delay_ = 1000000000 / FPS_;
 
@@ -109,6 +111,9 @@ void Game::clean()
     }
 
     // 释放渲染器和窗口
+    if (ttf_engine_) {
+        TTF_DestroyRendererTextEngine(ttf_engine_);
+    }
     if (renderer_) {
         SDL_DestroyRenderer(renderer_);
     }
@@ -122,6 +127,19 @@ void Game::clean()
     TTF_Quit();
     // 退出SDL
     SDL_Quit();
+}
+
+void Game::setScore(int score)
+{
+    score_ = score;
+    if (score_ > high_score_) {
+        high_score_ = score_;
+    }
+}
+
+void Game::addScore(int score)
+{
+    setScore(score_ + score);
 }
 
 void Game::renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size, const glm::vec2& mask)
@@ -169,6 +187,12 @@ void Game::renderHBar(const glm::vec2& position, const glm::vec2& size, float pe
     SDL_RenderRect(renderer_, &boundary_rect);
     SDL_RenderFillRect(renderer_, &fill_rect);
     SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
+}
+
+TTF_Text* Game::createTTF_Text(const std::string& text, const std::string& font_path, int font_size)
+{
+    auto font = asset_store_->getFont(font_path, font_size);
+    return TTF_CreateText(ttf_engine_, font, text.c_str(), 0);
 }
 
 void Game::drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor)
