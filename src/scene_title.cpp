@@ -8,7 +8,7 @@ void SceneTitle::init()
 {
     Scene::init();
     SDL_ShowCursor();
-    game_.playMusic("assets/bgm/Spooky music.mp3");
+    //game_.playMusic("assets/bgm/Spooky music.mp3");
     auto size = glm::vec2(game_.getScreenSize().x / 2.0f, game_.getScreenSize().y / 3.0f);
     HUDText::addHUDTextChild(this, "幽 灵 逃 生", game_.getScreenSize() / 2.0f - glm::vec2(0, 100), size, "assets/font/VonwaonBitmap-16px.ttf", 64);
     auto score_text = "最高分: " + std::to_string(game_.getHighScore());

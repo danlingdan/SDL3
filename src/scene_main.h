@@ -7,16 +7,20 @@ class UIMouse;
 class HUDStats;
 class HUDButton;
 class HUDText;
+class Timer;
 class SceneMain : public Scene
 {
     Player* player_ = nullptr; // 玩家
     Spawner* spawner_ = nullptr;
+
     UIMouse* ui_mouse_ = nullptr;
     HUDStats* hud_stats_ = nullptr;
     HUDText* hud_text_score_ = nullptr;
     HUDButton* button_pause_ = nullptr;
     HUDButton* button_restart_ = nullptr;
     HUDButton* button_back_ = nullptr;
+
+    Timer* end_timer_ = nullptr;
 
 public:
     SceneMain() = default;
@@ -34,5 +38,6 @@ private:
     void checkButtonPause();
     void checkButtonRestart();
     void checkButtonBack();
+    void checkEndTimer();
 
 };

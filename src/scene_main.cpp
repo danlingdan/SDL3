@@ -9,18 +9,21 @@
 #include "screen/hud_text.h"
 #include "screen/hud_button.h"
 #include "scene_title.h"
+#include "raw/timer.h"
 
 void SceneMain::init()
 {
     Scene::init();
     SDL_HideCursor();
-    game_.playMusic("assets/bgm/OhMyGhost.ogg");
+    //game_.playMusic("assets/bgm/OhMyGhost.ogg");
     world_size_ = game_.getScreenSize() * 3.0f;
     camera_position_ = world_size_ / 2.0f - game_.getScreenSize() / 2.0f;
     player_ = new Player();
     player_->init();
     player_->setPosition(world_size_ / 2.0f);
     addChild(player_);
+
+    end_timer_ = Timer::addTimerChild(this);
 
     button_pause_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() - glm::vec2(230.f, 30.f), "assets/UI/A_Pause1.png", "assets/UI/A_Pause2.png", "assets/UI/A_Pause3.png");
     button_restart_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() - glm::vec2(140.f, 30.f), "assets/UI/A_Restart1.png", "assets/UI/A_Restart2.png", "assets/UI/A_Restart3.png");
@@ -51,6 +54,8 @@ void SceneMain::update(float dt)
     checkButtonRestart();
     checkButtonPause();
     checkButtonBack();
+    if (player_ && !player_->getActive()) end_timer_->start();
+    checkEndTimer();
 }
 
 void SceneMain::render()
@@ -88,6 +93,7 @@ void SceneMain::checkButtonPause()
 void SceneMain::checkButtonRestart()
 {
     if (!button_restart_->getIsTrigger()) return;
+    game_.setScore(0);
     auto scene = new SceneMain();
     game_.safeChangeScene(scene); // 或者 当前场景 先clean() 再 init()
 }
@@ -95,8 +101,21 @@ void SceneMain::checkButtonRestart()
 void SceneMain::checkButtonBack()
 {
     if (!button_back_->getIsTrigger()) return;
+    game_.setScore(0);
     auto scene = new SceneTitle();
     game_.safeChangeScene(scene);
+}
+
+void SceneMain::checkEndTimer()
+{
+    if (!end_timer_->timeOut()) return;
+    pause();
+    button_restart_->setRenderPosition(game_.getScreenSize() / 2.0f - glm::vec2(200.f, 0.0f));
+    button_restart_->setScale(4.0f);
+    button_back_->setRenderPosition(game_.getScreenSize() / 2.0f + glm::vec2(200.f, 0.0f));
+    button_back_->setScale(4.0f);
+    button_pause_->setActive(false);
+    end_timer_->stop();
 }
 
 

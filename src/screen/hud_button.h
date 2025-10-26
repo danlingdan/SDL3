@@ -25,8 +25,8 @@ public:
     bool getIsHover() const { return is_hover_; }
     bool getIsPress() const { return is_press_; }
     bool getIsTrigger();   // 只要触发一次，就会重置is_trigger_状态
-
     void setIsHover(bool is_hover) { is_hover_ = is_hover; }
     void setIsPress(bool is_press) { is_press_ = is_press; }
     void setIsTrigger(bool is_trigger) { is_trigger_ = is_trigger; }
+    void setScale(float scale);
 };
