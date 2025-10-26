@@ -11,7 +11,7 @@ void SceneTitle::init()
     Scene::init();
     loadData("assets/score.dat");
     SDL_HideCursor();
-    //game_.playMusic("assets/bgm/Spooky music.mp3");
+    game_.playMusic("assets/bgm/Spooky music.mp3");
     auto size = glm::vec2(game_.getScreenSize().x / 2.0f, game_.getScreenSize().y / 3.0f);
     HUDText::addHUDTextChild(this, "幽 灵 逃 生", game_.getScreenSize() / 2.0f - glm::vec2(0, 100), size, "assets/font/VonwaonBitmap-16px.ttf", 64);
     auto score_text = "最高分: " + std::to_string(game_.getHighScore());
@@ -25,7 +25,7 @@ void SceneTitle::init()
     credits_text_->setBgSizeByText();
     credits_text_->setActive(false);
 
-    UIMouse::addUIMouseChild(this, "assets/UI/pointer_c_shaded.png", "assets/UI/pointer_c_shaded.png", 1.0f, Anchor::TOP_LEFT);
+    ui_mouse_ = UIMouse::addUIMouseChild(this, "assets/UI/pointer_c_shaded.png", "assets/UI/pointer_c_shaded.png", 1.0f, Anchor::TOP_LEFT);
 }
 
 bool SceneTitle::handleEvents(SDL_Event& event)
@@ -46,6 +46,7 @@ void SceneTitle::update(float dt)
     color_timer_ += dt;
     updateColor();
     if (credits_text_->getActive()) {
+        ui_mouse_->update(dt);
         return;
     }
     Scene::update(dt);

@@ -17,7 +17,7 @@ void SceneMain::init()
 {
     Scene::init();
     SDL_HideCursor();
-    //game_.playMusic("assets/bgm/OhMyGhost.ogg");
+    game_.playMusic("assets/bgm/OhMyGhost.ogg");
     world_size_ = game_.getScreenSize() * 3.0f;
     camera_position_ = world_size_ / 2.0f - game_.getScreenSize() / 2.0f;
     player_ = new Player();
@@ -129,6 +129,7 @@ void SceneMain::checkEndTimer()
 {
     if (!end_timer_->timeOut()) return;
     pause();
+    game_.resumeMusic();
     button_restart_->setRenderPosition(game_.getScreenSize() / 2.0f - glm::vec2(200.f, 0.0f));
     button_restart_->setScale(4.0f);
     button_back_->setRenderPosition(game_.getScreenSize() / 2.0f + glm::vec2(200.f, 0.0f));

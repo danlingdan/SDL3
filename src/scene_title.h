@@ -3,6 +3,7 @@
 
 class HUDButton;
 class HUDText;
+class UIMouse;
 class SceneTitle : public Scene
 {
 protected:
@@ -13,6 +14,7 @@ protected:
     HUDButton* button_credits_ = nullptr;
     HUDButton* button_quit_ = nullptr;
     HUDText* credits_text_ = nullptr;
+    UIMouse* ui_mouse_ = nullptr;
 
 public:
     void init() override;
