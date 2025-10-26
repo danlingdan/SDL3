@@ -7,18 +7,24 @@
 #include "world/spell.h"
 #include "screen/hud_stats.h"
 #include "screen/hud_text.h"
+#include "screen/hud_button.h"
+#include "scene_title.h"
 
 void SceneMain::init()
 {
-    //game_.playMusic("assets/bgm/OhMyGhost.ogg");
-
+    Scene::init();
     SDL_HideCursor();
+    game_.playMusic("assets/bgm/OhMyGhost.ogg");
     world_size_ = game_.getScreenSize() * 3.0f;
     camera_position_ = world_size_ / 2.0f - game_.getScreenSize() / 2.0f;
     player_ = new Player();
     player_->init();
     player_->setPosition(world_size_ / 2.0f);
     addChild(player_);
+
+    button_pause_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() - glm::vec2(230.f, 30.f), "assets/UI/A_Pause1.png", "assets/UI/A_Pause2.png", "assets/UI/A_Pause3.png");
+    button_restart_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() - glm::vec2(140.f, 30.f), "assets/UI/A_Restart1.png", "assets/UI/A_Restart2.png", "assets/UI/A_Restart3.png");
+    button_back_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() - glm::vec2(50.f, 30.f), "assets/UI/A_Back1.png", "assets/UI/A_Back2.png", "assets/UI/A_Back3.png");
 
     spawner_ = new Spawner();
     spawner_->init();
@@ -32,16 +38,19 @@ void SceneMain::init()
 
 }
 
-void SceneMain::handleEvents(SDL_Event& event)
+bool SceneMain::handleEvents(SDL_Event& event)
 {
-    Scene::handleEvents(event);
-
+    if (Scene::handleEvents(event)) return true;
+    return false;
 }
 
 void SceneMain::update(float dt)
 {
     Scene::update(dt);
     updateScore();
+    checkButtonRestart();
+    checkButtonPause();
+    checkButtonBack();
 }
 
 void SceneMain::render()
@@ -67,6 +76,27 @@ void SceneMain::renderBackground()
 void SceneMain::updateScore()
 {
     hud_text_score_->setText("Score: " + std::to_string(game_.getScore()));
+}
+
+void SceneMain::checkButtonPause()
+{
+    if (!button_pause_->getIsTrigger()) return;
+    if (is_pause_) resume();
+    else pause();
+}
+
+void SceneMain::checkButtonRestart()
+{
+    if (!button_restart_->getIsTrigger()) return;
+    auto scene = new SceneMain();
+    game_.safeChangeScene(scene); // 或者 当前场景 先clean() 再 init()
+}
+
+void SceneMain::checkButtonBack()
+{
+    if (!button_back_->getIsTrigger()) return;
+    auto scene = new SceneTitle();
+    game_.safeChangeScene(scene);
 }
 
 

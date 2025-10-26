@@ -14,13 +14,14 @@ HUDButton* HUDButton::addHUDButtonChild(Object* parent, glm::vec2 render_pos, co
     return hud_button;
 }
 
-void HUDButton::handleEvents(SDL_Event& event)
+bool HUDButton::handleEvents(SDL_Event& event)
 {
     if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
         if (event.button.button == SDL_BUTTON_LEFT) {
             if (is_hover_) {
                 is_press_ = true;
                 game_.playSound("assets/sound/UI_button08.wav");
+                return true;
             }
         }
     }
@@ -29,9 +30,11 @@ void HUDButton::handleEvents(SDL_Event& event)
             is_press_ = false;
             if (is_hover_) {
                 is_trigger_ = true;
+                return true;
             }
         }
     }
+    return false;
 }
 
 void HUDButton::update(float) {
