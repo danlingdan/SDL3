@@ -1,3 +1,4 @@
+
 #include "object_affiliate.h"
 
 void ObjectAffiliate::setOffsetByAnchor(Anchor anchor)

@@ -10,7 +10,7 @@ class SpriteAnim : public Sprite
     bool is_loop_ = true;
 
 public:
-    static SpriteAnim* addSpriteAnimChild(ObjectScreen* parrent, const std::string& file_path, float scale = 1.0f, Anchor anchor = Anchor::CENTER);
+    static SpriteAnim* addSpriteAnimChild(ObjectScreen* parent, const std::string& file_path, float scale = 1.0f, Anchor anchor = Anchor::CENTER);
     virtual void update(float dt) override;
 
     // getters and setters

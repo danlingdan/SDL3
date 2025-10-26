@@ -1,5 +1,5 @@
-#include "hud_stats.h"
 
+#include "hud_stats.h"
 #include "../core/actor.h"
 #include "../raw/stats.h"
 #include "../affiliate/sprite.h"

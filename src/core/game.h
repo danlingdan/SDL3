@@ -17,7 +17,6 @@ class Game
 
     glm::vec2 mouse_position_ = glm::vec2(0);
     SDL_MouseButtonFlags mouse_buttons_ = 0;
-
     bool is_running_ = true; // 游戏是否运行
     Scene* current_scene_ = nullptr; // 当前场景
     Scene* next_scene_ = nullptr;
@@ -55,9 +54,6 @@ public:
     void render(); // 渲染游戏
     void clean(); // 清理游戏资源
 
-    void safeChangeScene(Scene* scene) { next_scene_ = scene; }
-    void changeScene(Scene* scene);
-
     // getters and setters
     glm::vec2 getScreenSize() const { return screen_size_; } // 获取屏幕大小
     Scene* getCurrentScene() const { return current_scene_; } // 获取当前场景
@@ -68,9 +64,11 @@ public:
     int getScore() const { return score_; } // 获取分数
     void setHighScore(int high_score) { high_score_ = high_score; } // 设置最高分数
     int getHighScore() const { return high_score_; } // 获取最高分数
+
     void addScore(int score);
     void quit() { is_running_ = false; }
-    
+    void safeChangeScene(Scene* scene) { next_scene_ = scene; }
+    void changeScene(Scene* scene);
 
     // 音频函数
     void playMusic(const std::string& music_path, bool loop = true) { Mix_PlayMusic(asset_store_->getMusic(music_path), loop ? -1 : 0); } //-1代表无限循环
@@ -88,15 +86,13 @@ public:
     glm::vec2 randomVec2(const glm::vec2& min, const glm::vec2& max) { return glm::vec2(randomFloat(min.x, max.x), randomFloat(min.y, max.y)); }
     glm::ivec2 randomIVec2(const glm::ivec2& min, const glm::ivec2& max) { return glm::ivec2(randomInt(min.x, max.x), randomInt(min.y, max.y)); }
 
-    // 绘制函数
-    void drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
-    void drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界
-    void drawPoints(const std::vector<glm::vec2>& points, glm::vec2 render_pos, SDL_FColor fcolor);
-
     // 渲染函数
     void renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size, const glm::vec2& mask = glm::vec2(1.0f)); // 渲染纹理
     void renderFillCircle(const glm::vec2& position, const glm::vec2& size, float alpha);
     void renderHBar(const glm::vec2& position, const glm::vec2& size, float percent, SDL_FColor color);
+    void drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
+    void drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界
+    void drawPoints(const std::vector<glm::vec2>& points, glm::vec2 render_pos, SDL_FColor fcolor);
 
     // 文字函数
     TTF_Text* createTTF_Text(const std::string& text, const std::string& font_path, int font_size = 16);
@@ -107,5 +103,4 @@ public:
 
 private:
     void updateMouse();
-
 };

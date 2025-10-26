@@ -20,7 +20,7 @@ protected:
     glm::vec2 percentage_ = glm::vec2(1.0f);       // 决定图片原始区域的百分比
 
 public:
-    static Sprite* addSpriteChild(ObjectScreen* parrent, const std::string& file_path, float scale = 1.0f, Anchor anchor = Anchor::CENTER);
+    static Sprite* addSpriteChild(ObjectScreen* parent, const std::string& file_path, float scale = 1.0f, Anchor anchor = Anchor::CENTER);
 
     virtual void render() override;
 

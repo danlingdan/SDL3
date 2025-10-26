@@ -1,19 +1,5 @@
 #include "text_label.h"
 
-void TextLabel::render()
-{
-    ObjectAffiliate::render();
-    auto pos = parrent_->getRenderPosition() + offset_;
-    TTF_DrawRendererText(ttf_text_, pos.x, pos.y);
-
-}
-
-void TextLabel::clean()
-{
-    if (!ttf_text_) return;
-    TTF_DestroyText(ttf_text_);
-}
-
 TextLabel* TextLabel::addTextLabelChild(ObjectScreen* parent, const std::string& text, const std::string& font_path, int font_size, Anchor anchor)
 {
     auto text_label = new TextLabel();
@@ -27,6 +13,20 @@ TextLabel* TextLabel::addTextLabelChild(ObjectScreen* parent, const std::string&
         text_label->setParent(parent);
     }
     return text_label;
+}
+
+void TextLabel::render()
+{
+    ObjectAffiliate::render();
+    auto pos = parent_->getRenderPosition() + offset_;
+    TTF_DrawRendererText(ttf_text_, pos.x, pos.y);
+
+}
+
+void TextLabel::clean()
+{
+    if (!ttf_text_) return;
+    TTF_DestroyText(ttf_text_);
 }
 
 void TextLabel::setFont(const std::string& font_path, int font_size)

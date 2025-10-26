@@ -7,20 +7,19 @@ class Collider : public ObjectAffiliate
 protected:
     //  友元
     friend Spell;
-
     enum class Type {
         CIRCLE,         // size_ 的 x 轴为直径, 默认 y=x;
         RECTANGLE
     };
-    Type type_ = Type::CIRCLE;
+    Type collider_type_ = Type::CIRCLE;
 
 public:
     virtual void render() override;
 
-    static Collider* addColliderChild(ObjectScreen* parent, glm::vec2 size, Type type = Type::CIRCLE, Anchor anchor = Anchor::CENTER);
+    static Collider* addColliderChild(ObjectScreen* parent, glm::vec2 size, Type collider_type = Type::CIRCLE, Anchor anchor = Anchor::CENTER);
     bool isColliding(Collider* other);
 
     // getters and setters
-    Type type() const { return type_; }
-    void setType(Type type) { type_ = type; }
+    Type getColliderType() const { return collider_type_; }
+    void setColliderType(Type collider_type) { collider_type_ = collider_type; }
 };

@@ -1,4 +1,3 @@
-
 #include "weapon.h"
 #include "../core/actor.h"
 #include "../world/spell.h"

@@ -15,10 +15,7 @@ protected:
     bool is_pause_ = false;
 
 public:
-    Scene() = default;
-    virtual ~Scene() = default;
 
-    virtual void init() override {}
     virtual bool handleEvents(SDL_Event& event) override;
     virtual void update(float dt) override;
     virtual void render() override;

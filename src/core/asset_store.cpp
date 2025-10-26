@@ -1,3 +1,4 @@
+
 #include "asset_store.h"
 
 void AssetStore::clean()

@@ -10,7 +10,7 @@ Stats* Stats::addStatsChild(Actor* parent, float max_health, float max_mana, flo
     stats->mana_ = max_mana;
     stats->damage_ = damage;
     stats->mana_regen_ = mana_regen;
-    parent->addChild(stats);
+    if (parent) parent->addChild(stats);
     return stats;
 }
 

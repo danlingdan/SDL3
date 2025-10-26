@@ -1,4 +1,3 @@
-#pragma once
 #include "../core/object_affiliate.h"
 
 class AffiliateBar : public ObjectAffiliate
@@ -10,7 +9,7 @@ protected:
     SDL_FColor color_low_ = { 1, 0, 0, 1 };   // 红色
 
 public:
-    static AffiliateBar* addAffiliateBarChild(ObjectScreen* parrent, glm::vec2 size, Anchor anchor = Anchor::CENTER);
+    static AffiliateBar* addAffiliateBarChild(ObjectScreen* parent, glm::vec2 size, Anchor anchor = Anchor::CENTER);
     virtual void render() override;
 
     // getters and setters

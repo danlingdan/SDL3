@@ -1,21 +1,24 @@
 #include "scene_title.h"
 #include "screen/hud_text.h"
-#include <cmath>
 #include "screen/hud_button.h"
 #include "scene_main.h"
-#include <fstream>
 #include "screen/ui_mouse.h"
+#include <cmath>
+#include <fstream>
 
 void SceneTitle::init()
 {
     Scene::init();
     loadData("assets/score.dat");
     SDL_HideCursor();
+
     game_.playMusic("assets/bgm/Spooky music.mp3");
     auto size = glm::vec2(game_.getScreenSize().x / 2.0f, game_.getScreenSize().y / 3.0f);
     HUDText::addHUDTextChild(this, "幽 灵 逃 生", game_.getScreenSize() / 2.0f - glm::vec2(0, 100), size, "assets/font/VonwaonBitmap-16px.ttf", 64);
     auto score_text = "最高分: " + std::to_string(game_.getHighScore());
     HUDText::addHUDTextChild(this, score_text, game_.getScreenSize() / 2.0f + glm::vec2(0, 100), glm::vec2(200, 50), "assets/font/VonwaonBitmap-16px.ttf", 32);
+
+
     button_start_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() / 2.0f + glm::vec2(-200, 200), "assets/UI/A_Start1.png", "assets/UI/A_Start2.png", "assets/UI/A_Start3.png", 2.0f);
     button_credits_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() / 2.0f + glm::vec2(0, 200), "assets/UI/A_Credits1.png", "assets/UI/A_Credits2.png", "assets/UI/A_Credits3.png", 2.0f);
     button_quit_ = HUDButton::addHUDButtonChild(this, game_.getScreenSize() / 2.0f + glm::vec2(200, 200), "assets/UI/A_Quit1.png", "assets/UI/A_Quit2.png", "assets/UI/A_Quit3.png", 2.0f);
@@ -35,7 +38,6 @@ bool SceneTitle::handleEvents(SDL_Event& event)
             credits_text_->setActive(false);
             return true;
         }
-
     }
     if (Scene::handleEvents(event)) return true;
     return false;

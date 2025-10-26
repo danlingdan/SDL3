@@ -135,16 +135,6 @@ void Game::clean()
     SDL_Quit();
 }
 
-void Game::changeScene(Scene* scene)
-{
-    if (current_scene_) {
-        current_scene_->clean();
-        delete current_scene_;
-    }
-    current_scene_ = scene;
-    current_scene_->init();
-}
-
 void Game::setScore(int score)
 {
     score_ = score;
@@ -156,6 +146,16 @@ void Game::setScore(int score)
 void Game::addScore(int score)
 {
     setScore(score_ + score);
+}
+
+void Game::changeScene(Scene* scene)
+{
+    if (current_scene_) {
+        current_scene_->clean();
+        delete current_scene_;
+    }
+    current_scene_ = scene;
+    current_scene_->init();
 }
 
 void Game::renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size, const glm::vec2& mask)
@@ -209,6 +209,17 @@ TTF_Text* Game::createTTF_Text(const std::string& text, const std::string& font_
 {
     auto font = asset_store_->getFont(font_path, font_size);
     return TTF_CreateText(ttf_engine_, font, text.c_str(), 0);
+}
+
+void Game::drawPoints(const std::vector<glm::vec2>& points, glm::vec2 render_pos, SDL_FColor fcolor)
+{
+    SDL_SetRenderDrawColorFloat(renderer_, fcolor.a, fcolor.g, fcolor.b, fcolor.a);
+    for (auto point : points) {
+        auto x = point.x + render_pos.x;
+        auto y = point.y + render_pos.y;
+        SDL_RenderPoint(renderer_, x, y);
+    }
+    SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
 }
 
 bool Game::isMouseInRect(const glm::vec2& top_left, const glm::vec2& botton_right)
@@ -268,17 +279,6 @@ void Game::drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right
             botton_right.y - top_left.y + 2 * i
         };
         SDL_RenderRect(renderer_, &rect);
-    }
-    SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
-}
-
-void Game::drawPoints(const std::vector<glm::vec2>& points, glm::vec2 render_pos, SDL_FColor fcolor)
-{
-    SDL_SetRenderDrawColorFloat(renderer_, fcolor.a, fcolor.g, fcolor.b, fcolor.a);
-    for (auto point : points) {
-        auto x = point.x + render_pos.x;
-        auto y = point.y + render_pos.y;
-        SDL_RenderPoint(renderer_, x, y);
     }
     SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
 }

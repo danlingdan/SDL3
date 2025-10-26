@@ -6,22 +6,22 @@ Texture::Texture(const std::string& file_path)
     SDL_GetTextureSize(texture, &src_rect.w, &src_rect.h);
 }
 
-Sprite* Sprite::addSpriteChild(ObjectScreen* parrent, const std::string& file_path, float scale, Anchor anchor)
+Sprite* Sprite::addSpriteChild(ObjectScreen* parent, const std::string& file_path, float scale, Anchor anchor)
 {
     auto sprite = new Sprite();
     sprite->init();
     sprite->setAnchor(anchor);
     sprite->setTexture(Texture(file_path));
     sprite->setScale(scale);
-    sprite->setParent(parrent);
-    parrent->addChild(sprite);
+    sprite->setParent(parent);
+    if (parent) parent->addChild(sprite);
     return sprite;
 }
 
 void Sprite::render()
 {
-    if (!texture_.texture || !parrent_ || is_finish_) return;
-    auto pos = parrent_->getRenderPosition() + offset_;
+    if (!texture_.texture || !parent_ || is_finish_) return;
+    auto pos = parent_->getRenderPosition() + offset_;
     game_.renderTexture(texture_, pos, size_, percentage_);   //解耦
 }
 

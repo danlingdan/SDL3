@@ -19,6 +19,15 @@ void Effect::update(float dt)
     checkFinish();
 }
 
+void Effect::clean()
+{
+    ObjectWorld::clean();
+    if (next_object_) {      // 如果next_object_已经添加到场景中，就不应该再去删除
+        next_object_->clean();
+        delete next_object_;
+        next_object_ = nullptr;
+    }
+}
 
 void Effect::checkFinish()
 {
@@ -27,6 +36,7 @@ void Effect::checkFinish()
         need_remove_ = true;
         if (next_object_) {
             game_.getCurrentScene()->safeAddChild(next_object_);
+            next_object_ = nullptr;
         }
     }
 }

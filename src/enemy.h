@@ -4,6 +4,7 @@
 
 class Enemy : public Actor
 {
+protected:
     enum class State {
         NORMAL,
         HURT,
@@ -15,9 +16,7 @@ class Enemy : public Actor
     SpriteAnim* anim_normal_ = nullptr;
     SpriteAnim* anim_hurt_ = nullptr;
     SpriteAnim* anim_die_ = nullptr;
-
-    SpriteAnim* current_anim_ = nullptr;
-
+    SpriteAnim* current_anim_ = nullptr;    // 这是个附加指针，不需要进行delete操作
     int score_ = 10;
 
 public:
@@ -25,14 +24,14 @@ public:
     virtual void init() override;
     virtual void update(float dt) override;  // override the update function from Actor
 
-    void aim_target(Player* target);
+    // getters and setters
+    Player* getTarget() { return target_; }
+    void setTarget(Player* target) { target_ = target; }
 
+private:
+    void aim_target(Player* target);
     void checkState();
     void changeState(State new_state);
     void attack();
     void remove();
-
-    // getters and setters
-    Player* getTarget() { return target_; }
-    void setTarget(Player* target) { target_ = target; }
 };

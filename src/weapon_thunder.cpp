@@ -3,6 +3,17 @@
 #include "core/scene.h"
 #include "core/actor.h"
 
+WeaponThunder* WeaponThunder::addWeaponThunderChild(Actor* parent, float cool_down, float mana_cost)
+{
+    auto weapon = new WeaponThunder();
+    weapon->init();
+    weapon->setParent(parent);
+    weapon->setCoolDown(cool_down);
+    weapon->setManaCost(mana_cost);
+    if (parent) parent->addChild(weapon);
+    return weapon;
+}
+
 void WeaponThunder::init()
 {
     Weapon::init();
@@ -15,17 +26,6 @@ void WeaponThunder::update(float dt)
 {
     Weapon::update(dt);
     if (hud_skill_) hud_skill_->setPercentage(cool_down_timer_ / cool_down_);   // 应该是0～1的值
-}
-
-WeaponThunder* WeaponThunder::addWeaponThunderChild(Actor* parent, float cool_down, float mana_cost)
-{
-    auto weapon = new WeaponThunder();
-    weapon->init();
-    weapon->setParent(parent);
-    weapon->setCoolDown(cool_down);
-    weapon->setManaCost(mana_cost);
-    parent->addChild(weapon);
-    return weapon;
 }
 
 bool WeaponThunder::handleEvents(SDL_Event& event)

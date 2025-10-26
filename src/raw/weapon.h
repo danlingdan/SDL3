@@ -11,6 +11,7 @@ protected:
     float mana_cost_ = 0.0f;
     float cool_down_timer_ = 0.0f;
 public:
+    // 这个类通常是用作基类，因此没有静态创建函数。使用时需创建具体的子类，例如 WeaponThunder
     virtual void update(float dt) override;
 
     void attack(glm::vec2 position, Spell* spell);  // 确保调用这个函数的时候，一定执行了attack()

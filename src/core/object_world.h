@@ -11,11 +11,13 @@ protected:
 public:
     virtual void init() override { type_ = ObjectType::OBJECT_WORLD; }
     virtual void update(float dt) override;
+
+    virtual void takeDamage(float) {}
     // getters and stters
     virtual glm::vec2 getPosition() const override { return position_; }
     void setPosition(const glm::vec2& position);
     virtual void setRenderPosition(const glm::vec2& render_position) override;
     Collider* getCollider() { return collider_; }
     void setCollider(Collider* collider) { collider_ = collider; }
-    virtual void takeDamage(float) { return; }
+
 };
