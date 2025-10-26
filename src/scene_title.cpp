@@ -4,12 +4,13 @@
 #include "screen/hud_button.h"
 #include "scene_main.h"
 #include <fstream>
+#include "screen/ui_mouse.h"
 
 void SceneTitle::init()
 {
     Scene::init();
     loadData("assets/score.dat");
-    SDL_ShowCursor();
+    SDL_HideCursor();
     //game_.playMusic("assets/bgm/Spooky music.mp3");
     auto size = glm::vec2(game_.getScreenSize().x / 2.0f, game_.getScreenSize().y / 3.0f);
     HUDText::addHUDTextChild(this, "幽 灵 逃 生", game_.getScreenSize() / 2.0f - glm::vec2(0, 100), size, "assets/font/VonwaonBitmap-16px.ttf", 64);
@@ -23,6 +24,8 @@ void SceneTitle::init()
     credits_text_ = HUDText::addHUDTextChild(this, text, game_.getScreenSize() / 2.0f, glm::vec2(500, 500), "assets/font/VonwaonBitmap-16px.ttf", 16);
     credits_text_->setBgSizeByText();
     credits_text_->setActive(false);
+
+    UIMouse::addUIMouseChild(this, "assets/UI/pointer_c_shaded.png", "assets/UI/pointer_c_shaded.png", 1.0f, Anchor::TOP_LEFT);
 }
 
 bool SceneTitle::handleEvents(SDL_Event& event)

@@ -105,4 +105,7 @@ public:
     bool isMouseInRect(const glm::vec2& top_left, const glm::vec2& botton_right);
     std::string loadTextFile(const std::string& file_path);
 
+private:
+    void updateMouse();
+
 };

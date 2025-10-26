@@ -137,4 +137,11 @@ void SceneMain::checkEndTimer()
     end_timer_->stop();
 }
 
+void SceneMain::checkSlowDown(float& dt)
+{
+    if (game_.getMouseButtons() & SDL_BUTTON_RMASK) {
+        dt *= 0.4;
+    }
+}
+
 
