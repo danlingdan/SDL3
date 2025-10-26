@@ -10,6 +10,7 @@
 #include "screen/hud_button.h"
 #include "scene_title.h"
 #include "raw/timer.h"
+#include <fstream>
 
 void SceneMain::init()
 {
@@ -54,8 +55,11 @@ void SceneMain::update(float dt)
     checkButtonRestart();
     checkButtonPause();
     checkButtonBack();
-    if (player_ && !player_->getActive()) end_timer_->start();
-    checkEndTimer();
+    if (player_ && !player_->getActive())
+    {
+        end_timer_->start();
+        saveData("assets/score.dat");
+    }
 }
 
 void SceneMain::render()
@@ -67,6 +71,16 @@ void SceneMain::render()
 void SceneMain::clean()
 {
     Scene::clean();
+}
+
+void SceneMain::saveData(const std::string& file_path)
+{
+    auto score = game_.getHighScore();
+    std::ofstream file(file_path, std::ios::binary);    // 以二进制形式保存
+    if (file.is_open()) {
+        file.write(reinterpret_cast<const char*>(&score), sizeof(score));
+        file.close();
+    }
 }
 
 void SceneMain::renderBackground()
@@ -93,6 +107,7 @@ void SceneMain::checkButtonPause()
 void SceneMain::checkButtonRestart()
 {
     if (!button_restart_->getIsTrigger()) return;
+    saveData("assets/score.dat");
     game_.setScore(0);
     auto scene = new SceneMain();
     game_.safeChangeScene(scene); // 或者 当前场景 先clean() 再 init()
@@ -101,6 +116,7 @@ void SceneMain::checkButtonRestart()
 void SceneMain::checkButtonBack()
 {
     if (!button_back_->getIsTrigger()) return;
+    saveData("assets/score.dat");
     game_.setScore(0);
     auto scene = new SceneTitle();
     game_.safeChangeScene(scene);
